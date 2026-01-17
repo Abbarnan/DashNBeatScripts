@@ -31,15 +31,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apa06"]
-size = Vector2(512, 12)
+size = Vector2(208, 10)
 
 [node name="Attack" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q74ol")
-animation = &"Projection"
+animation = &"Actual"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_apa06")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
