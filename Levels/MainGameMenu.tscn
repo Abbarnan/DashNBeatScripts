@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://kbe8gnadxdcv"]
+[gd_scene load_steps=3 format=3 uid="uid://kbe8gnadxdcv"]
 
 [ext_resource type="PackedScene" uid="uid://dm5awkowbngfc" path="res://Objects/Character.tscn" id="1_md177"]
 [ext_resource type="PackedScene" uid="uid://d0jvasmw7cvtc" path="res://Objects/AngleAlignedAttack.tscn" id="2_abvts"]
-[ext_resource type="Script" uid="uid://cddvseurt3u0j" path="res://Objects/AttackScript.gd" id="3_g4pb5"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.997624, 0.99544)
@@ -11,6 +10,6 @@ scale = Vector2(0.997624, 0.99544)
 position = Vector2(577.372, 324.48)
 
 [node name="Attack" parent="." instance=ExtResource("2_abvts")]
-position = Vector2(-13.031, 217.994)
+position = Vector2(-16.0381, 236.077)
 rotation = -6.18247
-script = ExtResource("3_g4pb5")
+wait_time = 5

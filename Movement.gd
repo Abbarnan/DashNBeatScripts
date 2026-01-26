@@ -6,6 +6,7 @@ var battling = false
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
+	Global.player = $"."
 func get_input():
 	var inputDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = inputDir * currentSpeed

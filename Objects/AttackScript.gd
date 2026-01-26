@@ -9,11 +9,11 @@ func _ready() -> void:
 	sprite = $AnimatedSprite2D
 	timer = $Timer
 	sprite.play("Actual") 
-	timer.start
+	timer.start()
 func degrees_Calculation():
 	angle_in_Rad = atan2(player.position.y - position.y, player.position.x - position.x)
 func _process(delta: float) -> void:
-	if timer.wait_time:
+	if timer:
 		degrees_Calculation()
 		rotation = angle_in_Rad
 	else:
