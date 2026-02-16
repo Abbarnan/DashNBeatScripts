@@ -8,15 +8,17 @@ var move_Attack = false
 var slope : int
 var right_side_node : Node2D 
 var move_dir : Vector2
+var dirNode : Node2D
 @export var wait_time : int;
 func _ready() -> void:
+	dirNode = $"Direction Node"
+	dirNode.position += position
 	player = $"../Character"
 	sprite = $AnimatedSprite2D
 	timer = $Timer
 	right_side_node = $"RS node"
 	sprite.play("Projection")
-	timer.wait_time = wait_time 
-	timer.start()
+	timer.start(wait_time)
 func degrees_Calculation():
 	angle_in_Rad = atan2(player.position.y - position.y, player.position.x - position.x)
 func _process(delta: float) -> void:
@@ -29,8 +31,8 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	move_dir = Vector2(1,snapped(position.y - Global.player.position.y/position.x - Global.player.position.x,0.1))
+	move_dir = Vector2(cos(angle_in_Rad)*(dirNode.position.x - position.x),sin(angle_in_Rad)*(dirNode.position.y - position.y))
 	print(position)
-	print(player.position)
+	print(dirNode.position)
 	print(move_dir)
 	move_Attack = true

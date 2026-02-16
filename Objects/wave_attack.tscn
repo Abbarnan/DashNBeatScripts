@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfqolgxk5g35"]
+
+[ext_resource type="Texture2D" uid="uid://cawlpimic61rh" path="res://assets/DashNBeatAttacks(Physical).png" id="1_1f883"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67bbs"]
+atlas = ExtResource("1_1f883")
+region = Rect2(256, 0, 96, 186)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ol5bf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67bbs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wave Attack" type="CharacterBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(8.01905, -14.0641, 6.01429, -41.1878, 33.0786, -42.1924, 18.0429, -20.0916)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ol5bf")
