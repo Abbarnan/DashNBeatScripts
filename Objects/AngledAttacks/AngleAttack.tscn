@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://ok8sgsdyt3u5"]
+
+[ext_resource type="Script" uid="uid://bu53k8g4pjnyv" path="res://Scripts/AngledAttack.gd" id="1_64uuy"]
+[ext_resource type="Texture2D" uid="uid://cawlpimic61rh" path="res://assets/DashNBeatAttacks(Physical).png" id="2_enckr"]
+[ext_resource type="Texture2D" uid="uid://dut0tpgufckvp" path="res://assets/DashNBeatAttacks(Projections).png" id="3_7n6h3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tf1k"]
+atlas = ExtResource("2_enckr")
+region = Rect2(0, 0, 209, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q74ol"]
+atlas = ExtResource("3_7n6h3")
+region = Rect2(0, 0, 512, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58wab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tf1k")
+}],
+"loop": true,
+"name": &"Actual",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q74ol")
+}],
+"loop": true,
+"name": &"Projection",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtscm"]
+size = Vector2(208, 10)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_64uuy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_58wab")
+animation = &"Actual"
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qtscm")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

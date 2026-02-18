@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://kbe8gnadxdcv"]
+[gd_scene load_steps=9 format=3 uid="uid://kbe8gnadxdcv"]
 
 [ext_resource type="PackedScene" uid="uid://dm5awkowbngfc" path="res://Objects/Character.tscn" id="1_md177"]
-[ext_resource type="PackedScene" uid="uid://d0jvasmw7cvtc" path="res://Objects/AngleAlignedAttack.tscn" id="2_abvts"]
+[ext_resource type="PackedScene" uid="uid://d0jvasmw7cvtc" path="res://Objects/AngleAlignedAttacks/AngleAlignedAttack.tscn" id="2_abvts"]
 [ext_resource type="Script" uid="uid://c01q3hy1h1s68" path="res://Levels/Wave_Attack.gd" id="3_67bbs"]
-[ext_resource type="PackedScene" uid="uid://cfqolgxk5g35" path="res://Objects/wave_attack.tscn" id="4_1tluk"]
+[ext_resource type="PackedScene" uid="uid://cfqolgxk5g35" path="res://Objects/Wave Attacks/wave_attack.tscn" id="4_1tluk"]
+[ext_resource type="PackedScene" uid="uid://ok8sgsdyt3u5" path="res://Objects/AngledAttacks/AngleAttack.tscn" id="5_1tluk"]
+[ext_resource type="PackedScene" uid="uid://0fkrjlisb30l" path="res://Objects/FollowingAttack/FollowingAttack(Triangle).tscn" id="6_yi0xq"]
+[ext_resource type="PackedScene" uid="uid://b31owc8kny758" path="res://Objects/Closing Attack/ClosingAttackHorizontial.tscn" id="7_87mhr"]
+[ext_resource type="PackedScene" uid="uid://80tmnsomhw53" path="res://Objects/Closing Attack/ClosingAttackVertical.tscn" id="8_p3vlp"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-6, -2)
@@ -11,11 +15,15 @@ scale = Vector2(0.997624, 0.99544)
 
 [node name="Character" parent="." instance=ExtResource("1_md177")]
 position = Vector2(577.372, 324.48)
+dashVelocity = 10
+dashTime = 0.25
+dashWaitTime = 3.0
 
 [node name="Attack" parent="." instance=ExtResource("2_abvts")]
 position = Vector2(-16.0381, 236.077)
 rotation = -6.18247
 wait_time = 5
+attackSpeed = 5
 
 [node name="Wave Attack" type="Node2D" parent="."]
 script = ExtResource("3_67bbs")
@@ -41,5 +49,29 @@ position = Vector2(0, 95.4352)
 
 [node name="Timer" type="Timer" parent="Wave Attack"]
 one_shot = true
+
+[node name="Angled Attack" parent="." instance=ExtResource("5_1tluk")]
+position = Vector2(317.9, 404.625)
+rotation = -0.306921
+wait_time = 3.0
+attackSpeed = 5
+
+[node name="Following attack" parent="." instance=ExtResource("6_yi0xq")]
+position = Vector2(497.181, 187.857)
+wait_time = 2.0
+attackSpeed = 5
+followTime = 5.0
+
+[node name="Closing Attack" parent="." instance=ExtResource("7_87mhr")]
+position = Vector2(946.248, 35.1603)
+attackSpeed = 3
+waitTime = 3
+travelDistances = 150
+
+[node name="Node2D" parent="." instance=ExtResource("8_p3vlp")]
+position = Vector2(498.184, 66.3023)
+attackSpeed = 5
+waitTime = 2
+travelDistances = 150
 
 [connection signal="timeout" from="Wave Attack/Timer" to="Wave Attack" method="_on_timer_timeout"]

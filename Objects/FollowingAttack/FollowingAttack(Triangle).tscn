@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://0fkrjlisb30l"]
+
+[ext_resource type="Script" uid="uid://o1jbxh2yh33j" path="res://Scripts/FollowingAttack.gd" id="1_fxr2v"]
+[ext_resource type="Texture2D" uid="uid://cawlpimic61rh" path="res://assets/DashNBeatAttacks(Physical).png" id="2_dny8u"]
+[ext_resource type="Texture2D" uid="uid://dut0tpgufckvp" path="res://assets/DashNBeatAttacks(Projections).png" id="3_jmj81"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw42x"]
+atlas = ExtResource("2_dny8u")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boyao"]
+atlas = ExtResource("3_jmj81")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4p58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw42x")
+}],
+"loop": true,
+"name": &"Actual",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyao")
+}],
+"loop": true,
+"name": &"Projection",
+"speed": 5.0
+}]
+
+[node name="Angled Attack" type="CharacterBody2D"]
+position = Vector2(-9.53674e-07, 9.53674e-07)
+rotation = -0.00866439
+script = ExtResource("1_fxr2v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i4p58")
+animation = &"Projection"
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-0.551076, -0.0364408)
+polygon = PackedVector2Array(0.680466, -0.731659, 31.8262, 14.166, 32.2533, 16.361, -32.0347, 16.1124, -31.4287, -15.8975, -28.2704, -16.0564)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

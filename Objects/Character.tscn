@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm5awkowbngfc"]
 
-[ext_resource type="Script" uid="uid://bkcsg58m06i02" path="res://Movement.gd" id="1_7ig0a"]
+[ext_resource type="Script" uid="uid://bkcsg58m06i02" path="res://Scripts/Movement.gd" id="1_7ig0a"]
 [ext_resource type="Texture2D" uid="uid://dig1acp6a7hkl" path="res://assets/DashNBeat_character.png" id="1_oolk3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7ig0a"]
@@ -24,8 +24,16 @@ currentSpeed = 1000
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7ig0a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_lcuhw")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lcuhw")
+
+[node name="Dash Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Dash Timer" to="." method="_on_dash_timer_timeout"]

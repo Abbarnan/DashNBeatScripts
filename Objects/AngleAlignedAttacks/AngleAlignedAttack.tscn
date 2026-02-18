@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d0jvasmw7cvtc"]
 
 [ext_resource type="Texture2D" uid="uid://cawlpimic61rh" path="res://assets/DashNBeatAttacks(Physical).png" id="1_svylm"]
-[ext_resource type="Script" uid="uid://djvfx5cgflnow" path="res://Objects/angle_aligned_attack.gd" id="1_x34tp"]
+[ext_resource type="Script" uid="uid://djvfx5cgflnow" path="res://Scripts/angle_aligned_attack.gd" id="1_x34tp"]
 [ext_resource type="Texture2D" uid="uid://dut0tpgufckvp" path="res://assets/DashNBeatAttacks(Projections).png" id="2_4tf1k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tf1k"]
@@ -35,10 +35,8 @@ animations = [{
 size = Vector2(208, 10)
 
 [node name="Attack" type="CharacterBody2D"]
+rotation = 1.57133
 script = ExtResource("1_x34tp")
-
-[node name="Direction Node" type="Node2D" parent="."]
-position = Vector2(5, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q74ol")
