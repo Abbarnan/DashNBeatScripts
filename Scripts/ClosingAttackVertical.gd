@@ -10,6 +10,7 @@ var leftStartingX : int
 @export var attackSpeed : int
 @export var waitTime : int
 @export var travelDistances : int
+@export var repeat : bool
 
 func _ready() -> void:
 	rightSprite = $"Right Wall/AnimatedSprite2D"
@@ -19,17 +20,18 @@ func _ready() -> void:
 	rightStartingX = rightWall.position.x
 	leftStartingX = leftWall.position.x
 	timer = $Timer
+	timer.one_shot = repeat
 	timer.start(waitTime)
 	
 func _process(delta: float) -> void:
 	if moveAttack:
-		leftWall.position.y += attackSpeed
-		rightWall.position.y -= attackSpeed
-		if abs(leftWall.position.y - leftStartingX) > travelDistances and abs(rightWall.position.y - rightStartingX) > travelDistances:
+		leftWall.position.x += attackSpeed
+		rightWall.position.x -= attackSpeed
+		if abs(leftWall.position.x - leftStartingX) > travelDistances:
 			moveAttack = false
-	if(!moveAttack and leftWall.position.y != leftStartingX):
-		leftWall.position.y -= attackSpeed
-		rightWall.position.y += attackSpeed
+	if(!moveAttack and leftWall.position.x != leftStartingX):
+		leftWall.position.x -= attackSpeed
+		rightWall.position.x += attackSpeed
 func _on_timer_timeout() -> void:
 	moveAttack = true
 	leftSprite.play("Actual")

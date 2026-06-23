@@ -1,3 +1,3 @@
 extends Node
 
-var player : CharacterBody2D
+@onready var playerPosition : Vector2

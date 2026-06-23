@@ -38,11 +38,11 @@ size = Vector2(208, 12)
 size = Vector2(209, 12)
 
 [node name="Node2D" type="Node2D"]
-rotation = 1.57256
 script = ExtResource("1_ir5vp")
 
 [node name="Right Wall" type="CharacterBody2D" parent="."]
-position = Vector2(0, -200)
+position = Vector2(200, 0)
+rotation = 1.5708
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Right Wall"]
 sprite_frames = SubResource("SpriteFrames_x44j7")
@@ -54,7 +54,8 @@ animation = &"Actual"
 shape = SubResource("RectangleShape2D_gvl1y")
 
 [node name="Left Wall" type="CharacterBody2D" parent="."]
-position = Vector2(0, 200)
+position = Vector2(-200, 0)
+rotation = 1.5708
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Left Wall"]
 sprite_frames = SubResource("SpriteFrames_x44j7")

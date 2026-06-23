@@ -10,6 +10,7 @@ var bottomStartingY : int
 @export var attackSpeed : int
 @export var waitTime : int
 @export var travelDistances : int
+@export var repeat : bool
 
 func _ready() -> void:
 	topSprite = $"Top Wall/AnimatedSprite2D"
@@ -19,13 +20,14 @@ func _ready() -> void:
 	topStartingY = topWall.position.y
 	bottomStartingY = bottomWall.position.y
 	timer = $Timer
+	timer.one_shot = repeat
 	timer.start(waitTime)
 	
 func _process(delta: float) -> void:
 	if moveAttack:
 		bottomWall.position.y -= attackSpeed
 		topWall.position.y += attackSpeed
-		if abs(bottomWall.position.y - bottomStartingY) > travelDistances and abs(bottomWall.position.y - bottomStartingY) > travelDistances:
+		if abs(bottomWall.position.y - bottomStartingY) > travelDistances:
 			moveAttack = false
 	if(!moveAttack and bottomWall.position.y != bottomStartingY):
 		bottomWall.position.y += attackSpeed

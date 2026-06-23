@@ -13,7 +13,7 @@ var isDashing = false
 func _ready():
 	timer = $"Dash Timer"
 	animated_sprite = $AnimatedSprite2D
-	Global.player = $"."
+	Global.playerPosition = $".".position
 func get_input():
 	var inputDir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if !isDashing:
@@ -21,6 +21,7 @@ func get_input():
 	else:
 		velocity = inputDir * dashVelocity
 func _physics_process(delta):
+	get_input()
 	if Input.is_action_just_pressed("Dashing") and canDash:
 		isDashing = true
 	if(!isDashing):
@@ -30,6 +31,7 @@ func _physics_process(delta):
 		isDashing = false
 		canDash = false
 		timer.start(dashWaitTime)
+	Global.playerPosition = position
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("Hit")
 	if area.is_in_group("Attack"):

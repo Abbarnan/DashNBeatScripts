@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kbe8gnadxdcv"]
+[gd_scene load_steps=11 format=3 uid="uid://kbe8gnadxdcv"]
 
 [ext_resource type="PackedScene" uid="uid://dm5awkowbngfc" path="res://Objects/Character.tscn" id="1_md177"]
 [ext_resource type="PackedScene" uid="uid://d0jvasmw7cvtc" path="res://Objects/AngleAlignedAttacks/AngleAlignedAttack.tscn" id="2_abvts"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://0fkrjlisb30l" path="res://Objects/FollowingAttack/FollowingAttack(Triangle).tscn" id="6_yi0xq"]
 [ext_resource type="PackedScene" uid="uid://b31owc8kny758" path="res://Objects/Closing Attack/ClosingAttackHorizontial.tscn" id="7_87mhr"]
 [ext_resource type="PackedScene" uid="uid://80tmnsomhw53" path="res://Objects/Closing Attack/ClosingAttackVertical.tscn" id="8_p3vlp"]
+[ext_resource type="PackedScene" uid="uid://p76j7ydlsmd7" path="res://OutwardsSpamAttack.tscn" id="9_gjfau"]
+[ext_resource type="PackedScene" uid="uid://dpg2m116n1nkr" path="res://OutwardCircle.tscn" id="10_kkeb0"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-6, -2)
@@ -20,12 +22,14 @@ dashTime = 0.25
 dashWaitTime = 3.0
 
 [node name="Attack" parent="." instance=ExtResource("2_abvts")]
+visible = false
 position = Vector2(-16.0381, 236.077)
 rotation = -6.18247
 wait_time = 5
 attackSpeed = 5
 
 [node name="Wave Attack" type="Node2D" parent="."]
+visible = false
 script = ExtResource("3_67bbs")
 attackSpeed = 1
 
@@ -51,27 +55,53 @@ position = Vector2(0, 95.4352)
 one_shot = true
 
 [node name="Angled Attack" parent="." instance=ExtResource("5_1tluk")]
+visible = false
 position = Vector2(317.9, 404.625)
 rotation = -0.306921
 wait_time = 3.0
 attackSpeed = 5
 
 [node name="Following attack" parent="." instance=ExtResource("6_yi0xq")]
+visible = false
 position = Vector2(497.181, 187.857)
 wait_time = 2.0
 attackSpeed = 5
 followTime = 5.0
 
-[node name="Closing Attack" parent="." instance=ExtResource("7_87mhr")]
+[node name="Closing Attack Horizontial" parent="." instance=ExtResource("7_87mhr")]
+visible = false
 position = Vector2(946.248, 35.1603)
 attackSpeed = 3
 waitTime = 3
 travelDistances = 150
 
-[node name="Node2D" parent="." instance=ExtResource("8_p3vlp")]
+[node name="Closing Attack Vertical" parent="." instance=ExtResource("8_p3vlp")]
+visible = false
 position = Vector2(498.184, 66.3023)
 attackSpeed = 5
 waitTime = 2
 travelDistances = 150
+
+[node name="Outwards Spam" parent="." instance=ExtResource("9_gjfau")]
+visible = false
+position = Vector2(606.441, 335.53)
+attackSpeed = 10
+angleBetween = 15.0
+attackTime = 0.25
+xdistance = 25
+ydistance = 25
+distanceFromPlayer = 2000
+xdirection = -1
+ydirection = -1
+
+[node name="Outward Circle" parent="." instance=ExtResource("10_kkeb0")]
+visible = false
+position = Vector2(654.555, 281.283)
+attackSpeed = 10
+angleBetween = 10.0
+attackTime = 0.25
+xdistance = 100
+ydistance = 100
+distanceFromPlayer = 1000
 
 [connection signal="timeout" from="Wave Attack/Timer" to="Wave Attack" method="_on_timer_timeout"]

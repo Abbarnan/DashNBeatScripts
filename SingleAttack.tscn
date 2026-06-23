@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw304qlmadosm"]
+
+[ext_resource type="Texture2D" uid="uid://cawlpimic61rh" path="res://assets/DashNBeatAttacks(Physical).png" id="1_tkw6q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqp7k"]
+atlas = ExtResource("1_tkw6q")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfsg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqp7k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fnfq"]
+radius = 15.0
+
+[node name="Area2D" type="Node2D"]
+
+[node name="Node" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node"]
+sprite_frames = SubResource("SpriteFrames_vfsg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node"]
+shape = SubResource("CircleShape2D_1fnfq")
